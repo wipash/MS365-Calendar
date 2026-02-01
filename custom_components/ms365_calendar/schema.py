@@ -27,7 +27,9 @@ CONFIG_SCHEMA = {
                 vol.Required(CONF_API_COUNTRY, default=CountryOptions.DEFAULT): vol.In(
                     CountryOptions
                 ),
-                vol.Optional(CONF_TENANT_ID, default=""): cv.string,
+                vol.Optional(CONF_TENANT_ID, default=""): vol.All(
+                    cv.string, vol.Strip, vol.Match(r"^[a-zA-Z0-9._-]*$")
+                ),
             }
         ),
         {"collapsed": True},

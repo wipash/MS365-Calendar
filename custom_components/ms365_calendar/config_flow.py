@@ -319,7 +319,11 @@ class MS365ConfigFlow(ConfigFlow, domain=DOMAIN):
                         vol.Optional(
                             CONF_TENANT_ID,
                             default=tenant_id if tenant_id != "common" else "",
-                        ): cv.string,
+                        ): vol.All(
+                            cv.string,
+                            vol.Strip,
+                            vol.Match(r"^[a-zA-Z0-9._-]*$"),
+                        ),
                     }
                 ),
                 {"collapsed": True},
