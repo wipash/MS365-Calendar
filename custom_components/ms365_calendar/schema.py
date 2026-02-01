@@ -11,6 +11,7 @@ from .const import (
     CONF_CLIENT_ID,
     CONF_CLIENT_SECRET,
     CONF_ENTITY_NAME,
+    CONF_TENANT_ID,
     CONF_URL,
     CountryOptions,
 )
@@ -25,7 +26,8 @@ CONFIG_SCHEMA = {
             {
                 vol.Required(CONF_API_COUNTRY, default=CountryOptions.DEFAULT): vol.In(
                     CountryOptions
-                )
+                ),
+                vol.Optional(CONF_TENANT_ID, default=""): cv.string,
             }
         ),
         {"collapsed": True},
